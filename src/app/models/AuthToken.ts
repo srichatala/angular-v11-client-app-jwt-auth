@@ -1,5 +1,4 @@
 export interface AuthToken{
-  username:string,
-  accesstoken:string,
-  refreshtoken:string
+  userName:string,
+  accessToken:string
 }
