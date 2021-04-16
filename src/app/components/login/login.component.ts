@@ -34,12 +34,12 @@ export class LoginComponent implements OnInit {
         if(data != null){
           this.authToken = {
             userName : data.userName,
-            accessToken : data.accessToken
+            accessToken : data.accessToken,
+            refreshToken : data.refreshToken
           };
           this.logger.log(JSON.stringify(this.authToken));
           this.router.navigate(['products']);
         }
-
     },
     _error =>this.logger.log("Something wrong, please try again"));
   }

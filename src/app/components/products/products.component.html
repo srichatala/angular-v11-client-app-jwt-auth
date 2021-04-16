@@ -1,1 +1,11 @@
-<p>products works!</p>
+<div *ngFor="let item of products">
+  <div>
+    Product Id:{{ item.id }}
+  </div>
+  <div>
+    Product Name: {{ item.name }}
+  </div>
+  <div>
+    Product Price: {{ item.price }}
+  </div>
+</div>

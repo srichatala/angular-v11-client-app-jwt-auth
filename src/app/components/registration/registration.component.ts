@@ -1,3 +1,5 @@
+import { AuthToken } from 'src/app/models/AuthToken';
+import { AuthService } from './../../services/auth/auth.service';
 import { LoggerService } from './../../services/logger/logger.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -10,12 +12,17 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class RegistrationComponent implements OnInit{
 
-  registerForm : any;
+  registerGroup : any;
 
-  constructor(private fb:FormBuilder, private router:Router, private logger:LoggerService) { }
+  authToken !:AuthToken;
+
+  constructor(private fb:FormBuilder,
+    private router:Router,
+    private logger:LoggerService,
+    private authService:AuthService) { }
 
   ngOnInit(): void {
-   this.registerForm = this.fb.group({
+   this.registerGroup = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
       name: ['']
@@ -23,7 +30,19 @@ export class RegistrationComponent implements OnInit{
   }
 
   onSubmit() {
-    this.logger.log(this.registerForm.value);
-    this.router.navigate(['login']);
+    this.logger.log(this.registerGroup.value);
+    this.authService.registration(this.registerGroup.value).subscribe(data=>
+      {
+        if(data != null){
+          this.authToken = {
+            userName : data.userName,
+            accessToken : data.accessToken,
+            refreshToken : data.refreshToken
+          };
+          this.logger.log(JSON.stringify(this.authToken));
+          this.router.navigate(['products']);
+        }
+    },
+    _error =>this.logger.log("Something wrong, please try again"));
   }
 }

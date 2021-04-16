@@ -1,5 +1,5 @@
 <h2>REGISTRATION</h2>
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="registerGroup" (ngSubmit)="onSubmit()">
   <div class="form-group center">
     <label for="exampleInputEmail1">Email</label>
     <input type="email" class="form-control" formControlName="email" required placeholder="Enter email">
@@ -12,6 +12,6 @@
     <label for="exampleInputPassword1">Name</label>
     <input type="text" class="form-control" formControlName="name" placeholder="Enter Full Name">
   </div>
-  <button type="submit" [disabled]="!registerForm.valid" class="btn btn-primary">Registration</button>
+  <button type="submit" [disabled]="!registerGroup.valid" class="btn btn-primary">Registration</button>
 </form>
 

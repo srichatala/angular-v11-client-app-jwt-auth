@@ -1,3 +1,4 @@
+import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -11,7 +12,8 @@ import { HomeComponent } from './components/home/home.component';
 import { ProductsComponent } from './components/products/products.component';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { NavbarComponent } from './components/layout/navbar/navbar.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     ProductsComponent,
     HeaderComponent,
-    NavbarComponent
+    NavbarComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,9 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
