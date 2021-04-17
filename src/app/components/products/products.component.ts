@@ -17,12 +17,10 @@ export class ProductsComponent implements OnInit {
   products!:Product[];
 
   constructor(private productService:ProductService,
-    private logger:LoggerService,
     private router: Router) { }
 
   ngOnInit(): void {
     this.productService.GetProducts().subscribe(res=>{
-      this.logger.log(JSON.stringify(res));
       this.products = res;
     },err=>{
       if(err instanceof HttpErrorResponse){
@@ -32,5 +30,4 @@ export class ProductsComponent implements OnInit {
       }
     });
   }
-
 }

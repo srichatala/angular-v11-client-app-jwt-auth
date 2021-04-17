@@ -1,11 +1,5 @@
+<h2>Product Details</h2>
 <div *ngFor="let item of products">
-  <div>
-    Product Id:{{ item.id }}
-  </div>
-  <div>
-    Product Name: {{ item.name }}
-  </div>
-  <div>
-    Product Price: {{ item.price }}
-  </div>
+  <app-product [product]="item"></app-product>
+  <hr/>
 </div>

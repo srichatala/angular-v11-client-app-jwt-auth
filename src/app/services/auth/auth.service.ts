@@ -99,11 +99,16 @@ export class AuthService implements OnDestroy {
   logout() {
     this._loggedIn.next(false);
     this.clearLocalStorage()
-    this.router.navigate(['login']);
+    this.router.navigate(['']);
   }
 
-  get isLoggedIn() {
-    return this._loggedIn.asObservable();
+  // get isLoggedIn() {
+  //   return this._loggedIn.asObservable();
+  // }
+
+  get isLoggedIn(): boolean {
+    let authToken = localStorage.getItem('access_token');
+    return (authToken !== null) ? true : false;
   }
 
   setLocalStorage(x: AuthToken) {

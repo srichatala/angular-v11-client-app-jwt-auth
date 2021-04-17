@@ -28,17 +28,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-    this.logger.log(this.loginGroup.value);
     this.authService.login(this.loginGroup.value).subscribe(data=>
       {
         if(data != null){
-          this.authToken = {
-            userName : data.userName,
-            accessToken : data.accessToken,
-            refreshToken : data.refreshToken
-          };
-          this.logger.log(JSON.stringify(this.authToken));
-          this.router.navigate(['products']);
+          this.router.navigate(['customer']);
         }
     },
     _error =>this.logger.log("Something wrong, please try again"));

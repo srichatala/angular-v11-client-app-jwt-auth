@@ -12,12 +12,12 @@ import { appInitializer } from '../services/app-initializer';
   declarations: [],
   imports: [CommonModule],
   providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: appInitializer,
-      multi: true,
-      deps: [AuthService],
-    },
+    // {
+    //   provide: APP_INITIALIZER,
+    //   useFactory: appInitializer,
+    //   multi: true,
+    //   deps: [AuthService],
+    // },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     {
       provide: HTTP_INTERCEPTORS,

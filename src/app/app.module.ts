@@ -1,4 +1,5 @@
-import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
+import { MaterialModule } from './material/material.module';
+import { CustomerComponent } from './components/customer/customer.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -12,8 +13,11 @@ import { HomeComponent } from './components/home/home.component';
 import { ProductsComponent } from './components/products/products.component';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { NavbarComponent } from './components/layout/navbar/navbar.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
+import { CoreModule } from './core/core.module';
+import { ProductComponent } from './components/products/product/product.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,10 @@ import { UnauthorizedComponent } from './components/unauthorized/unauthorized.co
     ProductsComponent,
     HeaderComponent,
     NavbarComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    CustomerComponent,
+    ProductComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,
@@ -32,11 +39,11 @@ import { UnauthorizedComponent } from './components/unauthorized/unauthorized.co
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CoreModule,
+    MaterialModule
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

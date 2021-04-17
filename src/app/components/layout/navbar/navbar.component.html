@@ -1,9 +1,10 @@
 <div class="nav-scroller py-1 mb-2" >
   <nav class="nav d-flex justify-content-between">
-    <a class="p-2 text-muted" routerLink="" routerLinkActive="active" >Home</a>
-    <a class="p-2 text-muted" routerLink="/registration" routerLinkActive="active">Registration</a>
-    <a class="p-2 text-muted" routerLink="/login"  routerLinkActive="active">Login</a>
-    <a class="p-2 text-muted" routerLink="/products" *ngIf="isLoggedIn$" routerLinkActive="active">Products</a>
-    <button (click)="onLogout()" *ngIf="isLoggedIn$" class="btn-danger">LogOut</button>
+    <a class="p-2 text-muted" routerLink="" routerLinkActive="active" >HOME</a>
+    <a class="p-2 text-muted" routerLink="/registration" *ngIf="!this.authService.isLoggedIn" routerLinkActive="active">REGISTRATION</a>
+    <a class="p-2 text-muted" routerLink="/login" *ngIf="!this.authService.isLoggedIn" routerLinkActive="active">LOGIN</a>
+    <a class="p-2 text-muted" routerLink="/customer" *ngIf="this.authService.isLoggedIn" routerLinkActive="active">CUSTOMER</a>
+    <a class="p-2 text-muted" routerLink="/products" *ngIf="this.authService.isLoggedIn" routerLinkActive="active">PRODUCTS</a>
+    <button (click)="onLogout()" *ngIf="this.authService.isLoggedIn" mat-raised-button color="warn">LOGOUT</button>
   </nav>
 </div>
