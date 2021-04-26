@@ -1,5 +1,5 @@
 <h2>Product Details</h2>
 <div *ngFor="let item of products">
-  <app-product [product]="item"></app-product>
+  <app-product [product]="item"  (deleteRequest)="crossOffItem($event)" ></app-product>
   <hr/>
 </div>

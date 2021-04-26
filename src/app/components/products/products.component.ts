@@ -30,4 +30,8 @@ export class ProductsComponent implements OnInit {
       }
     });
   }
+
+  crossOffItem(id:number):void{
+    this.products = this.products.filter(item => item.id !== id);
+  }
 }

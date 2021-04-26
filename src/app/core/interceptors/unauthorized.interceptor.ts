@@ -30,7 +30,7 @@ export class UnauthorizedInterceptor implements HttpInterceptor {
         }
 
         if (!environment.production) {
-          console.error(err);
+          console.log(err);
         }
         const error = (err && err.error && err.error.message) || err.statusText;
         return throwError(error);
